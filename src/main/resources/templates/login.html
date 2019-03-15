@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Login page</title>
+</head>
+<body>
+<div style="text-align: center;">
+
+    <th:block th:if="${info != null}" th:switch="${info}">
+        <span th:case="*{info.BAD_CREDENTIALS}" th:text="#{Login.info.bad.credentials}"></span>
+        <span th:case="*{info.BANNED}" th:text="#{Login.info.banned}"></span>
+    </th:block>
+
+
+    <form action="/login" method="post" th:object="${loginForm}">
+        Login: <input type="text" th:field="*{login}"> <br/>
+        Hasło: <input type="password" th:field="*{password}"> <br/>
+        <button type="submit">Zaloguj</button>
+    </form>
+</div>
+</body>
+</html>
